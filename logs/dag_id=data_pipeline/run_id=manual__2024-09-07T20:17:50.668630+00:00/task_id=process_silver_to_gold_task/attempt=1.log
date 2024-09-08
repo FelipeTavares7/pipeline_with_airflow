@@ -1,0 +1,40 @@
+[2024-09-07T20:18:16.592+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2024-09-07T20:18:16.626+0000] {taskinstance.py:2603} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: data_pipeline.process_silver_to_gold_task manual__2024-09-07T20:17:50.668630+00:00 [queued]>
+[2024-09-07T20:18:16.640+0000] {taskinstance.py:2603} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: data_pipeline.process_silver_to_gold_task manual__2024-09-07T20:17:50.668630+00:00 [queued]>
+[2024-09-07T20:18:16.641+0000] {taskinstance.py:2856} INFO - Starting attempt 1 of 2
+[2024-09-07T20:18:16.693+0000] {taskinstance.py:2879} INFO - Executing <Task(PythonOperator): process_silver_to_gold_task> on 2024-09-07 20:17:50.668630+00:00
+[2024-09-07T20:18:16.707+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=1174) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-09-07T20:18:16.711+0000] {standard_task_runner.py:72} INFO - Started process 1183 to run task
+[2024-09-07T20:18:16.718+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'data_pipeline', 'process_silver_to_gold_task', 'manual__2024-09-07T20:17:50.668630+00:00', '--job-id', '18', '--raw', '--subdir', 'DAGS_FOLDER/app/pipeline.py', '--cfg-path', '/tmp/tmp2kjbys4_']
+[2024-09-07T20:18:16.720+0000] {standard_task_runner.py:105} INFO - Job 18: Subtask process_silver_to_gold_task
+[2024-09-07T20:18:16.821+0000] {task_command.py:467} INFO - Running <TaskInstance: data_pipeline.process_silver_to_gold_task manual__2024-09-07T20:17:50.668630+00:00 [running]> on host 0533851d136c
+[2024-09-07T20:18:17.001+0000] {taskinstance.py:3122} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='data_pipeline' AIRFLOW_CTX_TASK_ID='process_silver_to_gold_task' AIRFLOW_CTX_EXECUTION_DATE='2024-09-07T20:17:50.668630+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-09-07T20:17:50.668630+00:00'
+[2024-09-07T20:18:17.004+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2024-09-07T20:18:17.005+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2024-09-07T20:18:17.006+0000] {logging_mixin.py:190} INFO - Current task name:process_silver_to_gold_task state:running start_date:2024-09-07 20:18:16.627633+00:00
+[2024-09-07T20:18:17.007+0000] {logging_mixin.py:190} INFO - Dag name:data_pipeline and current dag run status:running
+[2024-09-07T20:18:17.008+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2024-09-07T20:18:17.010+0000] {logging_mixin.py:190} INFO - Iniciando a função process_silver_to_gold
+[2024-09-07T20:18:17.011+0000] {logging_mixin.py:190} INFO - Localização do arquivo de entrada (Silver): layers/silver/transformed_data.parquet
+[2024-09-07T20:18:17.012+0000] {logging_mixin.py:190} INFO - Localização do arquivo de saída (Gold): layers/gold/aggregated_data.parquet
+[2024-09-07T20:18:17.013+0000] {logging_mixin.py:190} INFO - Carregando dados da camada Silver...
+[2024-09-07T20:18:17.253+0000] {logging_mixin.py:190} INFO - Dados carregados com sucesso. Total de linhas: 20903
+[2024-09-07T20:18:17.254+0000] {logging_mixin.py:190} INFO - Criando faixa etária...
+[2024-09-07T20:18:17.325+0000] {logging_mixin.py:190} INFO - Agregando dados por faixa etária e status...
+[2024-09-07T20:18:17.340+0000] {warnings.py:112} WARNING - /opt/***/dags/app/pipeline.py:110: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  aggregated_data = df.groupby(['age_group', 'subscription_status']).size().reset_index(name='user_count')
+
+[2024-09-07T20:18:17.635+0000] {logging_mixin.py:190} INFO - Salvando dados agregados na camada Ouro...
+[2024-09-07T20:18:17.710+0000] {logging_mixin.py:190} INFO - Dados agregados salvos com sucesso em layers/gold/aggregated_data.parquet
+[2024-09-07T20:18:17.715+0000] {python.py:240} INFO - Done. Returned value was: None
+[2024-09-07T20:18:17.744+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2024-09-07T20:18:17.745+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=data_pipeline, task_id=process_silver_to_gold_task, run_id=manual__2024-09-07T20:17:50.668630+00:00, execution_date=20240907T201750, start_date=20240907T201816, end_date=20240907T201817
+[2024-09-07T20:18:17.795+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2024-09-07T20:18:17.796+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2024-09-07T20:18:17.798+0000] {logging_mixin.py:190} INFO - Dag name:data_pipeline queued_at:2024-09-07 20:17:50.893060+00:00
+[2024-09-07T20:18:17.799+0000] {logging_mixin.py:190} INFO - Task hostname:0533851d136c operator:PythonOperator
+[2024-09-07T20:18:17.861+0000] {local_task_job_runner.py:261} INFO - Task exited with return code 0
+[2024-09-07T20:18:17.909+0000] {taskinstance.py:3891} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-09-07T20:18:17.945+0000] {local_task_job_runner.py:240} INFO - ::endgroup::
